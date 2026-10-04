@@ -23,10 +23,14 @@ import os
 import glob
 import numpy as np
 import pandas as pd
-import cv2
-from sklearn.model_selection import train_test_split
+# TensorFlow is imported before cv2 deliberately: on Linux, importing
+# OpenCV first and TensorFlow second can trigger a native segmentation
+# fault from conflicting bundled libraries. See the same note in
+# streamlit_app.py.
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.utils import to_categorical
+import cv2
+from sklearn.model_selection import train_test_split
 
 DATA_DIR = "data"
 CSV_PATH = os.path.join(DATA_DIR, "fer2013.csv")
