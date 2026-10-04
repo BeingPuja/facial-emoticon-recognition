@@ -24,11 +24,19 @@ Run locally with:
 For deployment instructions, see DEPLOY.md.
 """
 
+# IMPORTANT: TensorFlow must be imported before OpenCV (cv2). On Linux,
+# importing cv2 first can cause a native segmentation fault when TensorFlow
+# is imported afterward, due to the two libraries bundling conflicting
+# versions of low-level math/threading libraries. This doesn't show up on
+# Windows, which is why it can pass locally but crash on Streamlit Cloud
+# (which runs Linux) if the order is wrong.
+import tensorflow as tf  # noqa: F401  (imported first deliberately, see above)
+from tensorflow.keras.models import load_model
+
 import av
 import cv2
 import numpy as np
 import streamlit as st
-from tensorflow.keras.models import load_model
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, RTCConfiguration
 
 from data_preprocessing import EMOTION_LABELS, apply_clahe
