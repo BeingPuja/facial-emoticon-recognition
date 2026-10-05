@@ -5,11 +5,6 @@ Streamlit version of the Facial Emotion Recognition demo — built for
 deployment to Streamlit Community Cloud (streamlit.io/cloud), which is
 free for public apps and deploys directly from a GitHub repo.
 
-(Hugging Face Spaces now requires a paid plan for anything with a Python
-backend — Gradio/Docker Spaces are paid-only as of the account signup flow
-seen in late 2026 — so Streamlit Community Cloud is the practical free
-route for a live, shareable ML demo.)
-
 Two modes, as two tabs:
 1. "Live Webcam (Real-Time)" — uses streamlit-webrtc to continuously stream
    your browser's camera to the model and overlay the predicted emotion on
